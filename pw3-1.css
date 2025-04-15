@@ -1,38 +1,192 @@
-* { box-sizing: border-box; }
-body{margin: 0;
-font-family:Helvetica,Arial,sans-serif;
-font-size:  14px;
-line-height: 1.5;
-letter-spacing: 0.5px;
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pertemuan 3 Styling dengan CSS</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+        }
+        
+        header a {
+            text-decoration: none;
+            font-weight: bold;
+            color: blue;
+        }
+
+        main {
+            margin-bottom: 20px;
+        }
+
+       #gambar img {
+    width: 150px;
+    height: 150px; /* Bisa diatur sesuai keinginan */
+    object-fit: cover; /* Agar tetap proporsional tanpa distorsi */
 }
 
-input,
-select
-{
-width: 100%;
-padding:8px; margin:5px 0;
-border: 1px solid grey;
-border-radius:5px;
-display: block;
-}
 
-button,
-input[type=submit],
-input[type=button]
-{
-color:white; background:skyblue;
-border: 1px solid transparent;
-cursor:pointer;
-align-items: center;
-}
+        /* Styling form */
+        form {
+            max-width: 300px;
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
 
-button:hover,input[type=submit]:hover,input[type=button]:hover{background:aqua; }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
 
-ul {margin: 0; padding: 0; list-style-type:none;}
-li {padding: 0; left:0; }
+        input, select, button {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
 
-table {border-collapse:collapse; border-spacing:0; width:100%; color: #000;}
-table th, table td { border:none; text-align:left; padding:8px; }
-table tr { background:#f8f8f8; }
-table tr:nth-child(even){ background:#fff;}
-table th { height:37px; }
+        #username {
+            background: green;
+            color: white;
+        }
+
+        .bg-grey {
+            background: grey;
+            color: white;
+        }
+
+        input[type="submit"] {
+            background: red;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button {
+            background: blue;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover, input[type="submit"]:hover {
+            opacity: 0.8;
+        }
+
+        /* Table responsive */
+        .table-container {
+            overflow-x: auto;
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+
+        /* Responsiveness */
+        @media screen and (max-width: 700px) {
+            .col- { width: 50%; }
+        }
+
+        @media screen and (max-width: 450px) {
+            .col- { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="https://ipwija.ac.id">Home</a>
+</header>
+
+<main>
+    <p>Hi</p>
+</main>
+
+<section>
+    <h2>Halo World</h2>
+</section>
+
+<section id="gambar">
+    <img src="https://i.pinimg.com/736x/0e/f5/40/0ef54024ccdab279eee4c4198aed720d.jpg" alt="Gambar">
+</section>
+
+<section id="form" class="col-">
+    <form>
+        <label for="username">Username:</label>
+        <input id="username" type="text">
+
+        <label for="password">Password:</label>
+        <input id="password" class="bg-grey" type="password">
+
+        <label for="color">Warna:</label>
+        <input id="color" class="bg-grey" type="color">
+
+        <label for="dropdown">Dropdown:</label>
+        <select id="dropdown">
+            <option>1</option>
+            <option>2</option>
+        </select>
+
+        <input type="submit" value="Cancel">
+        <button type="submit">Login</button>
+    </form>
+</section>
+
+<section id="paragraf" class="col-">
+    <h1>Pertemuan 2</h1>
+    <h2>HTML Dasar</h2>
+    <p>Pertemuan 2, dasar HTML membuat paragraf sederhana dengan huruf <i>miring</i> dan <b>tebal</b>.</p>
+    
+    <ul>
+        <li>1</li>
+        <li>2</li>
+    </ul>
+
+    <ol>
+        <li>Satu</li>
+        <li>Dua</li>
+    </ol>
+</section>
+
+<section id="table" class="col- table-container">
+    <h2>Tabel</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Jan</th>
+                <th>Feb</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>4</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<footer>&copy; 2025</footer>
+
+</body>
+</html>
