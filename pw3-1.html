@@ -1,80 +1,192 @@
-<html>
+<!DOCTYPE html>
+<html lang="id">
 <head>
-  <title> Pertemuan 3 Styling dengan CSS </title>
-<style>
-input{
-  width:80%;
-  background:purple;
-}  
-#username{ background:green;}
-.bg-grey{ background:grey;}
-  
-@media screen and (max-width: 700px) {
-[class*='col-'] { width: 50%; }
-}
-@media screen and (max-width: 450px) {
-[class*='col-'] { width: 100%; }
-}
-
-
-</style>
-
-</head>
-  <body>
-<header><a href="ipwija.ac.id"> Home </a></header>
-<main> hi 
-<br/> 
-</main id="main" class="main">    
-<section>Halo Word</section>
-
-    <section id="gambar">
-    <img src="edu.png" height="200" width="200">  
-    </section>
-
-    <section id="form" class="col-">
-      <form>
-<label>Username:</label><input id="username" type="text">
-<label>Password:</label><input class="bg-grey" type="password">
-<label>Warna:</label><input class="bg-grey" type="color">
-<label>Dropdown:</label>
-        <select>
-          <option>1</option>
-          <option>2</option>
-        </select>
-<input type="submit" value="cancel">
-        <button> login</button>
-      </form>
-    </section>
-
-    <section id="paragraf" class="col-">
-<p>
-<h1> Pertemuan 2</h1>  
-<h2> HTML dasar </h2>
-pertemuan 2, dasar HTML membuat paragraf <br/> sederhana dengan huruf <i>miring </i>,<b>Tebal</b>
-</p>
-  <ul>
-    <li>1</li>
-    <li>2</li>
-  </ul>
-  <ol>
-    <li>satu</li>
-    <li>dua</li>
-  </ol>
-</section>
-<section id="table" class="col-">
-<h2>table</h2>
-<table border="1">
-<thead>
-  <tr><th>jan </th><th>feb </th></tr>
-</thead>  
-<tbody>
-<tr><td>1 </td><td>2 </td></tr>
-<tr><td>3 </td><td>4 </td></tr>
-</tbody>
-</table>
-</section>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pertemuan 3 Styling dengan CSS</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+        }
         
-<footer>@2025</footer>    
-  </body>
+        header a {
+            text-decoration: none;
+            font-weight: bold;
+            color: blue;
+        }
+
+        main {
+            margin-bottom: 20px;
+        }
+
+       #gambar img {
+    width: 150px;
+    height: 150px; /* Bisa diatur sesuai keinginan */
+    object-fit: cover; /* Agar tetap proporsional tanpa distorsi */
+}
+
+
+        /* Styling form */
+        form {
+            max-width: 300px;
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        #username {
+            background: green;
+            color: white;
+        }
+
+        .bg-grey {
+            background: grey;
+            color: white;
+        }
+
+        input[type="submit"] {
+            background: red;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button {
+            background: blue;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover, input[type="submit"]:hover {
+            opacity: 0.8;
+        }
+
+        /* Table responsive */
+        .table-container {
+            overflow-x: auto;
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+
+        /* Responsiveness */
+        @media screen and (max-width: 700px) {
+            .col- { width: 50%; }
+        }
+
+        @media screen and (max-width: 450px) {
+            .col- { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="https://ipwija.ac.id">Home</a>
+</header>
+
+<main>
+    <p>Hi</p>
+</main>
+
+<section>
+    <h2>Halo World</h2>
+</section>
+
+<section id="gambar">
+    <img src="https://i.pinimg.com/736x/0e/f5/40/0ef54024ccdab279eee4c4198aed720d.jpg" alt="Gambar">
+</section>
+
+<section id="form" class="col-">
+    <form>
+        <label for="username">Username:</label>
+        <input id="username" type="text">
+
+        <label for="password">Password:</label>
+        <input id="password" class="bg-grey" type="password">
+
+        <label for="color">Warna:</label>
+        <input id="color" class="bg-grey" type="color">
+
+        <label for="dropdown">Dropdown:</label>
+        <select id="dropdown">
+            <option>1</option>
+            <option>2</option>
+        </select>
+
+        <input type="submit" value="Cancel">
+        <button type="submit">Login</button>
+    </form>
+</section>
+
+<section id="paragraf" class="col-">
+    <h1>Pertemuan 2</h1>
+    <h2>HTML Dasar</h2>
+    <p>Pertemuan 2, dasar HTML membuat paragraf sederhana dengan huruf <i>miring</i> dan <b>tebal</b>.</p>
+    
+    <ul>
+        <li>1</li>
+        <li>2</li>
+    </ul>
+
+    <ol>
+        <li>Satu</li>
+        <li>Dua</li>
+    </ol>
+</section>
+
+<section id="table" class="col- table-container">
+    <h2>Tabel</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Jan</th>
+                <th>Feb</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>4</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<footer>&copy; 2025</footer>
+
+</body>
 </html>
