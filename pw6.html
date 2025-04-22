@@ -5,32 +5,111 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manipulasi HTML + CSS dengan JavaScript</title>
     <style>
-        body { font-family: Arial, sans-serif; padding: 20px; }
-        #dynamicContent { padding: 10px; border: 1px solid #ddd; margin: 10px 0; }
-        .highlight { color: white; background-color: #2980b9; padding: 5px; border-radius: 4px; }
-        .hidden { display: none; }
-        .animate { transition: all 0.3s ease; transform: scale(1.1); }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px;
+            background: linear-gradient(to right, #74ebd5, #9face6);
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        button {
+            margin: 5px;
+            padding: 10px 20px;
+            background: #2c3e50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease, transform 0.2s;
+        }
+
+        button:hover {
+            background: #34495e;
+            transform: scale(1.05);
+        }
+
+        #dynamicContent {
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .highlight {
+            background: #27ae60;
+            color: white;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .animate {
+            transform: scale(1.1);
+        }
+
+        form {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 400px;
+            margin: 0 auto;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-bottom: 15px;
+        }
+
+        input[type="text"]:focus {
+            border-color: #2980b9;
+            outline: none;
+        }
+
+        form button {
+            width: 100%;
+        }
     </style>
 </head>
 <body>
-    <h1>Manipulasi HTML + CSS dengan JavaScript</h1>
+    <h1>🎨 Manipulasi HTML + CSS dengan JavaScript</h1>
 
-    <button onclick="changeContent()">Ubah Konten</button>
-    <button onclick="toggleVisibility()">Tampilkan/Sembunyikan</button>
-    <button onclick="addAnimation()">Animasi Efek</button>
+    <div style="text-align: center;">
+        <button onclick="changeContent()">Ubah Konten</button>
+        <button onclick="toggleVisibility()">Tampilkan/Sembunyikan</button>
+        <button onclick="addAnimation()">Animasi Efek</button>
+    </div>
 
     <div id="dynamicContent">Konten ini akan diubah secara dinamis.</div>
 
     <form onsubmit="validateForm(event)">
         <label for="name">Nama:</label>
-        <input type="text" id="name" name="name" required>
+        <input type="text" id="name" name="name" placeholder="Masukkan nama kamu" required>
         <button type="submit">Kirim</button>
     </form>
 
     <script>
         function changeContent() {
             const content = document.getElementById('dynamicContent');
-            content.innerHTML = 'Konten telah diperbarui!';
+            content.innerHTML = '🎉 Konten telah diperbarui!';
             content.classList.toggle('highlight');
         }
 
@@ -48,12 +127,11 @@
             event.preventDefault();
             const name = document.getElementById('name').value;
             if (name.trim() === '') {
-                alert('Nama tidak boleh kosong!');
+                alert('⚠️ Nama tidak boleh kosong!');
             } else {
-                alert('Formulir berhasil dikirim!');
+                alert('✅ Formulir berhasil dikirim!');
             }
         }
     </script>
-
 </body>
 </html>
