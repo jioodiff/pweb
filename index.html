@@ -114,12 +114,12 @@
     <div class="header-text">
       <h1>Zio Adriano</h1>
       <p class="subtitle">He/Him • IT Analyst</p>
-      <p>Bali, Indonesia • <a href="mailto:zioadriann@gmail.com">zioadriann@gmail.com</a></p>
+      <p>Limus, Indonesia • <a href="mailto:zioadriann@gmail.com">zioadriann@gmail.com</a></p>
       <p><strong>SungJioo</strong> — Universitas Ipwija</p>
     </div>
 
     <div class="action-buttons">
-      <button>Open to work</button>
+      <button onclick="loadData()">Refresh Data</button>
       <button>Add profile section</button>
       <button>Enhance profile</button>
     </div>
@@ -129,8 +129,8 @@
     <div class="content-card">
       <h3>Sosial Media</h3>
       <ul>
-        <li><strong>LinkedIn:</strong> <a href="http://linkedin.com/in/sismadi" target="_blank">linkedin.com/in/sismadi</a></li>
-        <li><strong>Credly:</strong> <a href="https://www.credly.com/users/wawan-sismadi" target="_blank">credly.com/users/wawan-sismadi</a></li>
+        <li><strong>instagram:</strong> <a href="https://www.instagram.com/zioadriann/" target="_blank">instagram.com/zioadriann</a></li>
+        <li><strong>youtube:</strong> <a href="https://www.youtube.com/@jioodiff" target="_blank">youtube.com/@jioodiff</a></li>
       </ul>
     </div>
   </div>
@@ -147,24 +147,18 @@
 
     async function loadData() {
       const { data, error } = await supabase.from('web').select('*').order('id')
+
       if (error) {
-        alert('Error loading data: ' + error.message)
+        content.innerHTML = `<p style="color:red;text-align:center;">Error loading data: ${error.message}</p>`
         return
       }
 
-      content.innerHTML = ''
-      let out = ''
-
-      data.forEach(row => {
-        out += `
-          <div class="content-card">
-            <h2>${row.judul}</h2>
-            <p>${row.isi}</p>
-          </div>
-        `
-      })
-
-      content.innerHTML = out
+      content.innerHTML = data.map(row => `
+        <div class="content-card">
+          <h2>${row.judul}</h2>
+          <p>${row.isi}</p>
+        </div>
+      `).join('')
     }
 
     window.addEventListener('DOMContentLoaded', loadData)
