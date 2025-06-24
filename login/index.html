@@ -1,69 +1,262 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Login Sederhana - LocalStorage</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Zio Adriano</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #fff0f0;
+      margin: 0;
+      padding: 20px;
+    }
 
+    .profile-container {
+      max-width: 800px;
+      margin: auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(255, 0, 0, 0.1);
+    }
+
+    .header-bg {
+      height: 150px;
+      background: linear-gradient(to right, #8b0000, #e60026);
+      border-radius: 12px 12px 0 0;
+    }
+
+    .profile-photo-wrapper {
+      margin-top: -75px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .profile-photo {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 5px solid #fff;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .header-text {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .header-text h1 {
+      margin: 10px 0 5px;
+      font-size: 28px;
+      color: #990000;
+    }
+
+    .subtitle {
+      font-size: 16px;
+      color: #cc0000;
+      margin-bottom: 8px;
+    }
+
+    .header-text p {
+      margin: 4px 0;
+      color: #550000;
+    }
+
+    .header-text a {
+      color: #d40000;
+      text-decoration: none;
+    }
+
+    .header-text a:hover {
+      text-decoration: underline;
+    }
+
+    .action-buttons {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .login-form {
+      margin-bottom: 15px;
+    }
+
+    .login-form input {
+      padding: 8px;
+      width: 200px;
+      margin: 5px;
+      border: 1px solid #d88;
+      border-radius: 6px;
+    }
+
+    .action-buttons button {
+      padding: 10px 20px;
+      margin: 5px;
+      font-size: 14px;
+      border: none;
+      border-radius: 8px;
+      background-color: #c1121f;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .action-buttons button:hover {
+      background-color: #910000;
+    }
+
+    .content-card {
+      background-color: #fff;
+      border: 1px solid #f5c6cb;
+      border-radius: 10px;
+      padding: 20px;
+      margin-top: 15px;
+      box-shadow: 0 4px 12px rgba(255, 0, 0, 0.05);
+    }
+
+    .content-card h2 {
+      margin-top: 0;
+      color: #b00000;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    li {
+      margin-bottom: 6px;
+    }
+
+    @media (max-width: 600px) {
+      .profile-photo {
+        width: 100px;
+        height: 100px;
+      }
+
+      .header-text h1 {
+        font-size: 22px;
+      }
+
+      .login-form input {
+        width: 90%;
+      }
+
+      .action-buttons button {
+        width: 100%;
+        margin: 8px 0;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<div class="login-box" id="loginBox">
-  <h2>Login</h2>
-  <form id="loginForm">
-    <label>Username:
-      <input type="text" id="username" required>
-    </label>
-    <label>Password:
-      <input type="password" id="password" required>
-    </label>
-    <button type="submit">Login</button>
-  </form>
+<div class="profile-container">
+  <div class="header-bg"></div>
+
+  <div class="profile-photo-wrapper">
+    <img src="https://i.pinimg.com/736x/80/0a/17/800a17bc47feb4d469652fdde2eb3847.jpg" alt="profile" class="profile-photo" />
+  </div>
+
+  <div class="header-text">
+    <h1>Zio Adriano</h1>
+    <p class="subtitle">He/Him • Cyber Security</p>
+    <p>Hongdae, South Korea • <a href="mailto:zioadriann@gmail.com">zioadriann@gmail.com</a></p>
+    <p><strong>SungJioo</strong> — Oxford University</p>
+  </div>
+
+  <div class="action-buttons">
+    <div class="login-form" id="loginForm">
+      <input type="email" id="emailInput" placeholder="Email" required />
+      <input type="password" id="passwordInput" placeholder="Password" required />
+      <button id="submitLoginBtn">Masuk</button>
+    </div>
+    <button id="logoutBtn">Logout</button>
+  </div>
+
+  <div id="content"></div>
+
+  <div class="content-card">
+    <h3>Sosial Media</h3>
+    <ul>
+      <li><strong>Instagram:</strong> <a href="https://www.instagram.com/zioadriann/" target="_blank">instagram.com/in/zioadriann</a></li>
+      <li><strong>YouTube:</strong> <a href="https://www.youtube.com/@jioodiff" target="_blank">youtube.com/@jioodiff</a></li>
+    </ul>
+  </div>
 </div>
 
-<div class="login-box" id="welcomeBox" style="display: none;">
-  <h2 id="welcome">Halo, User!</h2>
-  <button onclick="logout()">Logout</button>
-</div>
+<script type="module">
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
 
-<script>
-  // Simulasi user login (hardcoded)
-  const users = {
-    admin: '12345',
-    user: 'pass'
-  };
+const SUPABASE_URL = 'https://blnighctpjsimkwzpnil.supabase.co'
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJsbmlnaGN0cGpzaW1rd3pwbmlsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgzMTcwMDcsImV4cCI6MjA2Mzg5MzAwN30.mX8GJ34paeAsBtVtQnqyMgxviSSKONrsFmZjkW93sTw'
+const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+const content = document.getElementById('content')
 
-  // Cek apakah user sudah login
-  function checkLogin() {
-    const session = localStorage.getItem('sessionUser');
-    if (session) {
-      document.getElementById('loginBox').style.display = 'none';
-      document.getElementById('welcomeBox').style.display = 'block';
-      document.getElementById('welcome').innerText = `Halo, ${session}!`;
-    }
+async function login() {
+  const email = document.getElementById('emailInput').value.trim()
+  const password = document.getElementById('passwordInput').value.trim()
+
+  if (!email || !password) {
+    alert('Email dan password wajib diisi!')
+    return
   }
 
-  // Tangani login
-  document.getElementById('loginForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const uname = document.getElementById('username').value.trim();
-    const pass = document.getElementById('password').value.trim();
+  const { data, error } = await supabase.auth.signInWithPassword({ email, password })
 
-    if (users[uname] && users[uname] === pass) {
-      localStorage.setItem('sessionUser', uname);
-      checkLogin();
-    } else {
-      alert('Username atau password salah!');
-    }
-  });
-
-  // Logout
-  function logout() {
-    localStorage.removeItem('sessionUser');
-    location.reload();
+  if (error) {
+    alert('Login gagal: ' + error.message)
+    return
   }
 
-  // Jalankan saat pertama dimuat
-  checkLogin();
+  loadData()
+}
+
+async function logout() {
+  await supabase.auth.signOut()
+  content.innerHTML = '<p>Logout berhasil.</p>'
+}
+
+async function loadData() {
+  const {
+    data: { user }
+  } = await supabase.auth.getUser()
+
+  if (!user) {
+    content.innerHTML = '<p>Silakan login untuk melihat data.</p>'
+    return
+  }
+
+  const { data, error } = await supabase
+    .from('web')
+    .select('*')
+    .order('id')
+
+  if (error) {
+    alert('Error loading data: ' + error.message)
+    return
+  }
+
+  let out = ''
+  data.forEach(row => {
+    out += `
+      <div class="content-card">
+        <h2>${row.judul}</h2>
+        <p>${row.isi}</p>
+      </div>
+    `
+  })
+
+  content.innerHTML = out
+}
+
+document.getElementById('submitLoginBtn').addEventListener('click', login)
+document.getElementById('logoutBtn').addEventListener('click', logout)
+
+window.addEventListener('DOMContentLoaded', async () => {
+  const { data: { user } } = await supabase.auth.getUser()
+  if (user) loadData()
+})
 </script>
 
 </body>
