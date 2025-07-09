@@ -1,1 +1,0 @@
-<h2>Terima kasih! Pembayaran berhasil atau menunggu!</h2>
